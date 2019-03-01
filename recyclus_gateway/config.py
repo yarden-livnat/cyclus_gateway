@@ -1,4 +1,5 @@
 """Application configuration."""
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -6,6 +7,7 @@ db_dir = Path('.').parent.resolve()
 
 
 class Config(object):
+    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY', None)
     BCRYPT_LOG_ROUNDS = 13
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis"
 
