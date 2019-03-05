@@ -11,6 +11,8 @@ from .api import blueprint
 def create_app(config_name='development'):
     print('create gateway', config_name)
 
+
+
     app = Flask(__name__, instance_relative_config=True)
     app.wsgi_app = ProxyFix(app.wsgi_app)
 

@@ -1,4 +1,3 @@
-Cyclus Gateway
-===============
+#Recyclus Gateway
 
-A gateway for all of Cyclus remote services
+A gateway for all of [Cyclus](http://fuelcycle.org "Cyclus Homepage" remote services (Recyclus-services)
