@@ -61,6 +61,10 @@ class Batch(Resource):
     def post(self, path):
         return add_credentials_and_forward(batch_server, path)
 
+    @jwt_required
+    def delete(self, path):
+        return add_credentials_and_forward(batch_server, path)
+
 
 @api.route('datastore/<path:path>')
 class Datastore(Resource):
