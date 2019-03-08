@@ -5,7 +5,8 @@ from werkzeug.contrib.fixers import ProxyFix
 from .config import config_by_name
 from .db import db
 from .security import jwt, bcrypt
-from .api import blueprint
+from .api import blueprint as api_blueprint
+from .public import blueprint as public_blueprint
 
 
 def create_app(config_name='development'):
@@ -29,7 +30,8 @@ def create_app(config_name='development'):
     db.init_app(app)
     bcrypt.init_app(app)
     jwt.init_app(app)
-    app.register_blueprint(blueprint, url_prefix='/api')
+    app.register_blueprint(api_blueprint, url_prefix='/api')
+    app.register_blueprint(public_blueprint)
 
     @app.before_first_request
     def create_tables():

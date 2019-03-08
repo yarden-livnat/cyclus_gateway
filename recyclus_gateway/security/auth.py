@@ -25,10 +25,7 @@ def user_identify(user):
 
 @jwt.user_claims_loader
 def add_claims(user):
-    return {'username': user.username,
-            'username': user.username,
-            'roles': user.roles
-            }
+    return {'username': user.username, 'roles': user.roles }
 
 
 @jwt.user_loader_callback_loader

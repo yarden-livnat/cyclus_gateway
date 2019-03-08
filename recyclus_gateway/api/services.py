@@ -12,9 +12,7 @@ datastore_server = 'http://datastore:5020/api'
 
 
 def forward(url, data, stream=False):
-
     try:
-        # app.logger.debug('forward payload:', json.dumps(data))
         resp = requests.request(
             method=request.method,
             url=url,
@@ -40,7 +38,6 @@ def forward(url, data, stream=False):
 
 def add_credentials_and_forward(server, path, stream=False):
     claims = get_jwt_claims()
-    # r = request
     data = json.loads(request.data) if request.data else {}
     data['identity'] = {
         'user': claims['username'],

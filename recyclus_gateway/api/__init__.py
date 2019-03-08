@@ -12,7 +12,7 @@ from .services import api as services_api
 blueprint = Blueprint('api', __name__)
 
 api = Api(blueprint,
-          title='Cyclus Gateway',
+          title='Recyclus API Gateway',
           version='1.0',
           description='Remote cyclus services api',
           doc='/doc/')
