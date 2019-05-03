@@ -1,4 +1,3 @@
-from flask import Blueprint
 from flask_restplus import Resource, Namespace
 from flask_jwt_extended import ( get_raw_jwt,
                 jwt_required, fresh_jwt_required, jwt_refresh_token_required)

@@ -1,7 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from flask_restplus import Api
-
-from jwt.exceptions import ExpiredSignatureError
+from flask import current_app as app
+from jwt.exceptions import ExpiredSignatureError, InvalidSignatureError
 from flask_jwt_extended.exceptions import JWTExtendedException
 from ..security.exceptions import TokenNotFound
 
@@ -25,16 +25,25 @@ api.add_namespace(services_api, path='/')
 @api.errorhandler
 def default_error_handler(error):
     '''Default error handler'''
-    return {'message': str(error)}, getattr(error, 'code', 500)
+    app.logger.error(f'default error handler {str(error)}  {getattr(error, "code", -1)}')
+    return {'message': str(error)}, getattr(error, 'code', 400)
 
 
 @api.errorhandler(JWTExtendedException)
 @api.errorhandler(TokenNotFound)
 def handle_security_exception(error):
     '''Security exceptions handler'''
-    return {'message': error.message}, 400
+    return {'message': error.message}, 401
 
 
 @api.errorhandler(ExpiredSignatureError)
 def handle_expire_exception(error):
-    return {'message': 'Signature expired'}, 400
+    app.logger.error('Signature expired')
+    return {'message': 'Signature expired'}, 401
+
+
+@api.errorhandler(InvalidSignatureError)
+def handle_invalid_exception(error):
+    app.logger.error(f'{str(error)} ')
+    return {'message': 'Signature invalid', 401
+
