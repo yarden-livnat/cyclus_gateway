@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
 from flask_restplus import Api
 from flask import current_app as app
 from jwt.exceptions import ExpiredSignatureError, InvalidSignatureError
@@ -45,5 +45,6 @@ def handle_expire_exception(error):
 @api.errorhandler(InvalidSignatureError)
 def handle_invalid_exception(error):
     app.logger.error(f'{str(error)} ')
-    return {'message': 'Signature invalid', 401
+    return {'message': 'Signature invalid'}, 401
+
 
