@@ -9,9 +9,8 @@ from recyclus_gateway import create_app, db
 from recyclus_gateway.security import auth
 from recyclus_gateway.security.models import User, Token
 
-app = create_app(os.getenv('FLASK_ENV') or 'development')
 
-# app.app_context().push()
+app = create_app(os.getenv('FLASK_ENV') or 'production')
 
 manager = Manager(app)
 
@@ -21,7 +20,8 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def run():
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=80,
+            ssl_context=('/recyclus/certificates/hostcert.crt', '/recyclus/certificates/hostcert.key'))
 
 
 @manager.command

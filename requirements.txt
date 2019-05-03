@@ -6,6 +6,7 @@ flask_restplus
 flask-script
 flask_sqlalchemy
 flask_testing
+pyopenssl
 marshmallow
 requests
 webargs
