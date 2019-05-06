@@ -12,3 +12,4 @@ ENTRYPOINT ["./scripts/entrypoint.sh"]
 CMD ["python", "manage.py", "run"]
 
 EXPOSE 80
+EXPOSE 443

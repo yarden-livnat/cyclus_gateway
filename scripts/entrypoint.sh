@@ -1,3 +1,3 @@
 #!/bin/bash
-source ./scripts/load-secretes.sh
+source ./scripts/load-secrets.sh
 "$@"

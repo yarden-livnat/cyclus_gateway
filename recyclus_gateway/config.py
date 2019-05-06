@@ -61,7 +61,7 @@ class ProductionConfig(Config):
     ENV = 'production'
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = f'sqlite:////data/gateway.db'
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=15)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=15)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     JWT_COOKIE_SECURE = False
 
